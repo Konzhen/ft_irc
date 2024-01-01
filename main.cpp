@@ -27,18 +27,20 @@ int main(int argc, char  **argv)
         return (1);
     }
     
-//    const int port = atoi(argv[2]);
-//    int serverSocket = socket(AF_INET, SOCK_STREAM, 0);
-//    if (serverSocket == -1) {
-//        std::cerr << "Erreur lors de la création du socket : " << strerror(errno) << std::endl;
-//        return EXIT_FAILURE;
-//    }
-//
-    //// Configurer l'adresse du serveur
-    //sockaddr_in serverAddress;
-    //serverAddress.sin_family = AF_INET;
-    //serverAddress.sin_port = htons();
-    //serverAddress.sin_addr.s_addr = INADDR_ANY;
+    Server  server(argv[1], argv[2]);
+
+    try
+    {
+        server.init();
+        server.run();
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+    
+    
+
 //
     //// Lier le socket à l'adresse et au port
     //if (bind(serverSocket, reinterpret_cast<sockaddr*>(&serverAddress), sizeof(serverAddress)) == -1) {

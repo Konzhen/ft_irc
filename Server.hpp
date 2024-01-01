@@ -11,9 +11,10 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <arpa/inet.h>
-#include <sys/socket.h>
+#include <netinet/in.h>
 #include <set>
 #include <map>
+#include "ErrIrc.hpp"
 #include "Client.hpp"
 
 //--------------------------------------------------------------------------//
@@ -26,9 +27,12 @@ class Server
     private:
                            // - VARIABLES - //
 
-        struct sockaddr_in      server_addr;
-        std::set<int, Client>   clients;
-        std::map<std::string, std::set<int>> channels;
+        short                   _port;
+        std::string             _ip;
+        int                     _socket;
+        struct sockaddr_in      _socket_addr;
+        std::set<Client *>        _clients;
+        std::map<std::string, std::set<int>> _channels;
 
 
                            // - FUNCTIONS - //
@@ -74,7 +78,7 @@ class Server
                            // - FUNCTIONS - //
 
     // Constructor & Destructors
-        Server(const std::string &ip, const);
+        Server(const char *ip, const char *port);
         ~Server();
 
     // Operators
@@ -84,6 +88,8 @@ class Server
 
 
     // Member Functions
+        void init();
+        void run();
         void sendMessage(const int cSocket, const std::string &message);
         void broadcastMessage(const std::string &channel, const std::string &client, const std::string &message);
         void handleClientConnection(int cSocket);

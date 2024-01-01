@@ -15,11 +15,11 @@
 class ErrIrc
 {
     public:
-        class ErrIrcFormatException : public std::exception
+        class ErrServerInit : public std::exception
         {
             const char *what() const throw()
             {
-                return "Wrong format, please use a valid IP and Port.";
+                return "Error";
             }
         };
 

@@ -23,9 +23,9 @@ class Client
 //--PRIVATE-----------------------------------------------------------------//
     private:
                            // - VARIABLES - //
-        const int               socket;
-        const std::string       name;
-        std::set<std::string>   channels;
+        const int               _socket;
+        const std::string       _name;
+        std::set<std::string>   _channels;
 
 
                            // - FUNCTIONS - //
@@ -71,7 +71,7 @@ class Client
                            // - FUNCTIONS - //
 
     // Constructor & Destructors
-        Client();
+        Client(const int socket);
         Client(Client &client);
         ~Client();
 

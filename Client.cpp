@@ -4,12 +4,7 @@
 //                      - CONSTRUCTORS & DESTRUCTORS -                      //
 //--------------------------------------------------------------------------//
 
-Client::Client()
-{
-
-}
-
-Client::Client(Client &client)
+Client::Client(const int socket): _socket(socket)
 {
 
 }
@@ -24,10 +19,6 @@ Client::~Client()
 //                               - OPERATORS -                              //
 //--------------------------------------------------------------------------//
 
-Client    &Client::operator=(const Client &client)
-{
-
-}
 
 
 //--------------------------------------------------------------------------//
